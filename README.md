@@ -25,7 +25,9 @@ O projeto é composto por:
 - `app.py`: Código do back-end em Flask que recebe e processa as perguntas.
 - `index.html`: Interface de front-end para interação com o usuário.
 - `dados.xlsx`: Arquivo Excel com os dados simulados para a aplicação.
-- `captura-do-app.png`: Imagem que representa a interface do aplicativo.
+- `captura-do-app.png`: Imagem que representa a interface do aplicativo:
+
+![Captura do App](captura-do-app.png)
 
 ## Como Usar
 
