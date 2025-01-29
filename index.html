@@ -4,37 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat com IA e Excel</title>
-
     <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS -->
-
-    <!-- Incluindo a biblioteca jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Consultor de Planilhas</h1>
-    <input type="text" id="pergunta" placeholder="Digite sua pergunta">
-    <button onclick="fazerPergunta()">Enviar</button>
-    <p id="resposta" class="typing"></p> <!-- Texto de resposta com animação de digitação -->
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h2>Consultor de Planilhas</h2>
+            </div>
+            <div class="messages" id="messages">
+                <!-- Histórico de mensagens será inserido aqui -->
+            </div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="pergunta" placeholder="Digite sua pergunta" />
+            <button onclick="fazerPergunta()">Enviar</button>
+        </div>
+    </div>
 
     <script>
         function fazerPergunta() {
             let pergunta = document.getElementById("pergunta").value;
+            if (!pergunta.trim()) return; // Verifica se a pergunta não está vazia
+
+            // Exibe a pergunta do usuário no chat
+            adicionarMensagem("Você", pergunta);
+
+            // Faz a requisição para o backend
             $.ajax({
                 url: 'http://127.0.0.1:5000/perguntar',
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({
-                    pergunta: pergunta  // Enviando a pergunta dinamicamente do campo de texto
-                }),
+                data: JSON.stringify({ pergunta: pergunta }),
                 success: function(response) {
                     console.log(response);
-                    $('#resposta').text(response.resposta || "Nenhuma resposta recebida.");
+                    adicionarMensagem("IA", response.resposta || "Nenhuma resposta recebida.");
                 },
                 error: function(error) {
                     console.error('Erro ao fazer requisição:', error);
-                    $('#resposta').text("Erro ao fazer a requisição.");
+                    adicionarMensagem("IA", "Erro ao fazer a requisição.");
                 }
             });
+
+            // Limpa o campo de entrada
+            document.getElementById("pergunta").value = '';
+        }
+
+        // Função para adicionar mensagens ao histórico
+        function adicionarMensagem(remetente, mensagem) {
+            const messagesDiv = document.getElementById("messages");
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add(remetente.toLowerCase());
+
+            messageDiv.innerHTML = `
+                <div class="message">${mensagem}</div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Rola para a última mensagem
         }
     </script>
 </body>

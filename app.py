@@ -5,7 +5,7 @@ import google.generativeai as genai
 import time
 
 # 🔹 Configurar a API do Google Gemini
-API_KEY = "AIzaSyA5L3HJJdwEsVuo_WGi9ZEY1tg9CKxujZU"
+API_KEY = "AIzaSyCBdc6g2rm5lwVZ1ZzBie2eGpaXmmoSgXM"
 genai.configure(api_key=API_KEY)
 
 app = Flask(__name__)
