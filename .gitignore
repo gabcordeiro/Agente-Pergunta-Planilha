@@ -1,0 +1,65 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+env/
+venv/
+*.sqlite3
+# Ignorar a pasta lib
+/lib/
+
+# Ignorar a pasta scripts
+/scripts/
+
+# Ignorar arquivos de configuração do IDE (caso use algum editor como VS Code ou PyCharm)
+.vscode/
+.idea/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos temporários criados pelo sistema
+*.bak
+*.swp
+
+# Ignorar arquivos de ambiente virtual Python
+venv/
+.env/
+
+# Ignorar arquivos de banco de dados temporários
+*.sqlite
+
+# Flask (configurações temporárias)
+instance/
+*.db
+
+# Dependências do Python (usando pip)
+Pipfile.lock
+*.egg-info/
+.eggs/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# Arquivos de build e distribuições
+build/
+dist/
+*.egg
+
+# Arquivos de configuração específicos
+*.env
+*.local
+.env.local
+.env.production

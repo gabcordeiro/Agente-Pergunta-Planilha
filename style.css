@@ -1,0 +1,119 @@
+/* Resetando alguns estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Estilo do título */
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    letter-spacing: 2px;
+}
+
+/* Animação de fadeIn */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Estilo do input e botão */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Animação do texto de resposta */
+#resposta {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-top: 20px;
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInText 3s forwards;
+    white-space: pre-wrap;
+}
+
+/* Animação para o texto aparecer letra por letra */
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Efeito de "digitação" no texto */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #3498db;
+    animation: typing 3s steps(30) 1s forwards;
+}

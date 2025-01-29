@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com IA e Excel</title>
+
+    <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS -->
+
+    <!-- Incluindo a biblioteca jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Consultor de Planilhas</h1>
+    <input type="text" id="pergunta" placeholder="Digite sua pergunta">
+    <button onclick="fazerPergunta()">Enviar</button>
+    <p id="resposta" class="typing"></p> <!-- Texto de resposta com animação de digitação -->
+
+    <script>
+        function fazerPergunta() {
+            let pergunta = document.getElementById("pergunta").value;
+            $.ajax({
+                url: 'http://127.0.0.1:5000/perguntar',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    pergunta: pergunta  // Enviando a pergunta dinamicamente do campo de texto
+                }),
+                success: function(response) {
+                    console.log(response);
+                    $('#resposta').text(response.resposta || "Nenhuma resposta recebida.");
+                },
+                error: function(error) {
+                    console.error('Erro ao fazer requisição:', error);
+                    $('#resposta').text("Erro ao fazer a requisição.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
